@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weekend_provider/models/article.dart';
 import 'package:weekend_provider/view_model/article_view_model.dart';
+import 'package:weekend_provider/views/add_article/add_article.dart';
 
 import '../../data/response/status.dart';
 import 'widgets/home_item.dart';
@@ -35,11 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 case Status.LOADING: return CircularProgressIndicator();
                 case Status.COMPLETE:
                   var articles = articleViewModel.articleList.data?.data;
+
                   return ListView.builder(
                       itemCount: articles?.length,
                       itemBuilder: (context, index){
+                        // print('article object ${articles![index]}');
                         var article = articles![index];
                         return ArticleItem(article: article);
+                        // return null;
                 });
                 case Status.ERROR: return Text('Error');
                 default: return const Text('defalut');
@@ -47,6 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddArticle()));
+        },
       ),
     );
   }
