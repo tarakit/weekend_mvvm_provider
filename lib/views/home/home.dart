@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         var article = articles![index];
                         return ArticleItem(article: article);
                         // return null;
-                });
+                        });
                 case Status.ERROR: return Text('Error');
                 default: return const Text('defalut');
               }
